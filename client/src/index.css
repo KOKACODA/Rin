@@ -20,8 +20,34 @@
 }
 
 body {
-  @apply bg-background-light dark:bg-background-dark text-gray-800;
+  background-image: url('/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family: Cantarell, "Source Han Serif CN VF" !important;
+  position: relative;
+}
+
+/* Dark overlay mask for readability */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(255, 255, 255, 0.75);
+  pointer-events: none;
+}
+
+/* Dark mode overlay */
+:root.dark body::before {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Ensure content sits above the overlay */
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 textarea:focus {
